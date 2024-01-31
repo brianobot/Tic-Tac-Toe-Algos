@@ -48,7 +48,7 @@ class TicTacToe:
         if self.get_open_spots() == []:
             return 0
         return -1
-    
+
     def get_computer_player(self, id):
         if self.computer_player.id == id:
             return self.computer_player

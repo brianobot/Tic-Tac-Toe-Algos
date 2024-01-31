@@ -23,15 +23,15 @@ class FirstSpotPickerPlayer(ComputerPlayer):
     def make_decision(self):
         open_spots = self.game.get_open_spots()
         return open_spots[0]
-    
+
 
 class LastSpotPickerPlayer(ComputerPlayer):
     def make_decision(self):
         open_spots = self.game.get_open_spots()
         return open_spots[-1]
-    
+
+
 class MiddleSpotPickerPlayer(ComputerPlayer):
     def make_decision(self):
         open_spots = self.game.get_open_spots()
-        return open_spots[len(open_spots)// 2]
-
+        return open_spots[len(open_spots) // 2]

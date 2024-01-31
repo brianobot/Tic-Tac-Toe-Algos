@@ -13,7 +13,7 @@ env = environ.Env()
 env.Env.read_from_env()
 
 ITERATIONS = env("ITERATIONS", default=500)
-PLAYER_MODULE = importlib.import_module('players')
+PLAYER_MODULE = importlib.import_module("players")
 
 # list of default dummy players for reference, if you algorithm loses to this players
 players_list = [
@@ -36,11 +36,12 @@ with open("players_list.txt") as player_data:
         else:
             players_list.append(player)
             print(f"Successfully Added player: {player}")
-    
+
 
 input("sdfsdfsdf")
 
 league_wins = []
+
 
 def compare_players(a, b, iterations=ITERATIONS):
     results = []
@@ -70,6 +71,7 @@ def compare_players(a, b, iterations=ITERATIONS):
     winner_name = game.get_computer_player(winner_id).name
     loser_name = game.get_computer_player(loser_id).name
     league_wins.append([winner_name, win_ratio, loser_name])
+
 
 def main():
     for player_a in players_list:
