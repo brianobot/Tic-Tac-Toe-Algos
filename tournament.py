@@ -10,7 +10,7 @@ from app import TicTacToe
 from collections import Counter
 
 env = environ.Env()
-env.Env.read_from_env()
+environ.Env.read_env()
 
 ITERATIONS = env("ITERATIONS", default=500)
 PLAYER_MODULE = importlib.import_module("players")
