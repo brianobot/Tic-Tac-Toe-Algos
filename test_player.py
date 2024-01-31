@@ -2,24 +2,47 @@
 After Implementing an algorithm for the computer player
 """
 
+import environ
 import players
-from app import TicTacToe, print_board
+import importlib
+
+from app import TicTacToe
 from collections import Counter
 
+env = environ.Env()
+env.Env.read_from_env()
 
-iterations = 500
+ITERATIONS = env("ITERATIONS", default=500)
+PLAYER_MODULE = importlib.import_module('players')
 
+# list of default dummy players for reference, if you algorithm loses to this players
 players_list = [
     players.ComputerPlayer,
     players.LastSpotPickerPlayer,
     players.FirstSpotPickerPlayer,
     players.MiddleSpotPickerPlayer,
-
 ]
+
+with open("players_list.txt") as player_data:
+    for player in player_data.readlines():
+        player: str
+        if player.isspace():
+            continue
+        try:
+            player = getattr(PLAYER_MODULE, player)
+        except AttributeError as err:
+            print(f"Error while adding player: {player}")
+            continue
+        else:
+            players_list.append(player)
+            print(f"Successfully Added player: {player}")
+    
+
+input("sdfsdfsdf")
 
 league_wins = []
 
-def compare_players(a, b, iterations=iterations):
+def compare_players(a, b, iterations=ITERATIONS):
     results = []
     for run in range(iterations):
         game = TicTacToe(a, b)
@@ -48,13 +71,15 @@ def compare_players(a, b, iterations=iterations):
     loser_name = game.get_computer_player(loser_id).name
     league_wins.append([winner_name, win_ratio, loser_name])
 
+def main():
+    for player_a in players_list:
+        for player_b in players_list:
+            print(f"Game: {player_a.__name__} vs {player_b.__name__}")
+            compare_players(player_a, player_b)
 
-for player_a in players_list:
-    for player_b in players_list:
-        print(f"Game: {player_a.__name__} vs {player_b.__name__}")
-        compare_players(player_a, player_b)
+    for win in league_wins:
+        print("WINS: ", win)
 
-for win in league_wins:
-    print("WINS: ", win)
 
-Counter()
+if __name__ == "__main__":
+    main()
