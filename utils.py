@@ -1,6 +1,11 @@
+import environ
 import importlib
 
-PLAYER_MODULE = importlib.import_module("players")
+env = environ.Env()
+environ.Env.read_env()
+
+PLAYER_MODULE = env("PLAYER_MODULE", default="players")
+PLAYER_MODULE = importlib.import_module(PLAYER_MODULE)
 
 
 def load_players() -> list:

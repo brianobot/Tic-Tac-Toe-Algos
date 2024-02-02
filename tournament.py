@@ -1,5 +1,9 @@
 """
-After Implementing an algorithm for the computer player
+After Implementing an algorithm for the computer player set the appropriate env variables 
+to enable the tournament script to locate and load your player(s) class. 
+
+The Tournament would run combinations of all the loaded players against each other, and a result 
+of all the runs would represent the result of the tournament.
 """
 
 import environ
