@@ -67,7 +67,7 @@ def print_board(game):
 
 
 def main():
-    game = TicTacToe(computer_player=ComputerPlayer, computer_player_2=ComputerPlayer)
+    game = TicTacToe(computer_player=ComputerPlayer)
 
     while game.check_for_winner() == -1:
         print_board(game)
